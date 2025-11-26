@@ -88,7 +88,6 @@ public class OrdemServicoService {
         ordemServicoRepository.deleteById(id);
     }
 
-    // Método auxiliar para converter Model em DTO
     private OrdemServicoDTO convertToDTO(OrdemServico ordemServico) {
         OrdemServicoDTO ordemServicoDTO = new OrdemServicoDTO();
         BeanUtils.copyProperties(ordemServico, ordemServicoDTO);

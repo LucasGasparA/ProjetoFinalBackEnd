@@ -2,6 +2,7 @@ package com.example.DriveonApp.DTOs;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -19,7 +20,7 @@ public class VeiculoDTO {
     private String modelo;
 
     @NotBlank(message = "A placa é obrigatória")
-    @Size(min = 7, max = 7, message = "A placa deve ter 7 caracteres")
+    @Pattern(regexp = "[A-Z]{3}[0-9][0-9A-Z][0-9]{2}", message = "A placa deve seguir o padrão (AAA-1234 ou AAA1A23)")
     private String placa;
 
     @NotNull(message = "O ID do cliente é obrigatório")

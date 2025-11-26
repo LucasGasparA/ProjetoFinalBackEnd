@@ -55,14 +55,12 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
-    // Método auxiliar para converter Model em DTO
     private ClienteDTO convertToDTO(Cliente cliente) {
         ClienteDTO clienteDTO = new ClienteDTO();
         BeanUtils.copyProperties(cliente, clienteDTO);
         return clienteDTO;
     }
 
-    // Método auxiliar para obter a entidade Cliente
     public Cliente getClienteEntity(Long id) {
         return clienteRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontrado("Cliente não encontrado com ID: " + id));

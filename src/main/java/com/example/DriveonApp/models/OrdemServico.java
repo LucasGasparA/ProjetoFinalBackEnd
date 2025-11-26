@@ -3,6 +3,7 @@ package com.example.DriveonApp.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,10 +20,12 @@ public class OrdemServico {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
+    @ToString.Exclude
     private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "veiculo_id", nullable = false)
+    @ToString.Exclude
     private Veiculo veiculo;
 
     @Column(nullable = false)

@@ -64,7 +64,6 @@ public class VeiculoService {
         veiculoRepository.deleteById(id);
     }
 
-    // Método auxiliar para converter Model em DTO
     private VeiculoDTO convertToDTO(Veiculo veiculo) {
         VeiculoDTO veiculoDTO = new VeiculoDTO();
         BeanUtils.copyProperties(veiculo, veiculoDTO);
@@ -72,7 +71,6 @@ public class VeiculoService {
         return veiculoDTO;
     }
 
-    // Método auxiliar para obter a entidade Veiculo
     public Veiculo getVeiculoEntity(Long id) {
         return veiculoRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontrado("Veículo não encontrado com ID: " + id));

@@ -3,6 +3,7 @@ package com.example.DriveonApp.models;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -27,8 +28,10 @@ public class Veiculo {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
+    @ToString.Exclude
     private Cliente cliente;
 
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private List<OrdemServico> ordensServico;
 }

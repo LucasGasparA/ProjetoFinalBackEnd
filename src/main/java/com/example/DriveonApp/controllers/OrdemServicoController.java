@@ -5,12 +5,15 @@ import com.example.DriveonApp.services.OrdemServicoService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/ordens-servico")
+@CrossOrigin(origins = "*") // Libera acesso
 public class OrdemServicoController {
 
     private final OrdemServicoService ordemServicoService;
@@ -26,21 +29,20 @@ public class OrdemServicoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<OrdemServicoDTO>> findAll(Pageable pageable) {
-        Page<OrdemServicoDTO> ordensServico = ordemServicoService.findAll(pageable);
-        return ResponseEntity.ok(ordensServico);
+    public ResponseEntity<Page<OrdemServicoDTO>> findAll(
+            @PageableDefault(page = 0, size = 10, sort = "dataAbertura", direction = Sort.Direction.DESC) Pageable pageable
+    ) {
+        return ResponseEntity.ok(ordemServicoService.findAll(pageable));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrdemServicoDTO> findById(@PathVariable Long id) {
-        OrdemServicoDTO ordemServico = ordemServicoService.findById(id);
-        return ResponseEntity.ok(ordemServico);
+        return ResponseEntity.ok(ordemServicoService.findById(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<OrdemServicoDTO> update(@PathVariable Long id, @RequestBody @Valid OrdemServicoDTO ordemServicoDTO) {
-        OrdemServicoDTO ordemServicoAtualizada = ordemServicoService.update(id, ordemServicoDTO);
-        return ResponseEntity.ok(ordemServicoAtualizada);
+        return ResponseEntity.ok(ordemServicoService.update(id, ordemServicoDTO));
     }
 
     @DeleteMapping("/{id}")
