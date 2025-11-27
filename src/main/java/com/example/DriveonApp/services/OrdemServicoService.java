@@ -69,7 +69,6 @@ public class OrdemServicoService {
         ordemServico.setCliente(cliente);
         ordemServico.setVeiculo(veiculo);
 
-        // Lógica para fechar a OS
         if (ordemServicoDTO.getStatus() == StatusOrdemServico.CONCLUIDA && ordemServico.getDataFechamento() == null) {
             ordemServico.setDataFechamento(LocalDateTime.now());
         } else if (ordemServicoDTO.getStatus() != StatusOrdemServico.CONCLUIDA) {
